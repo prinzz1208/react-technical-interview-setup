@@ -1,5 +1,0 @@
-Create a movie app which has following features:
-  1) User should be able to search a movie name using the search input field.
-  2) All the related movie names should be displayed in the table.
-
-Sample design link - https://www.figma.com/file/ayF50urZXX5pyBhuvoczME/Untitled?node-id=0%3A1
