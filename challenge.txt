@@ -1,19 +1,40 @@
 Update the movie app with following features:
-1) User should be able to search a movie using a keyword.
-2) The search results should be shown in the Table component.
+1) User should be able to click on the table row and select it.
+2) Create a Poster component to display a poster.
+2) User should be able to see the selected row/movie's poster in the Poster component.
   
 UI/UX tasks:
-  1) Update the search bar and button as per the provided figma design.
+  1) Update the page as per the provided figma design.
 
 API Documentation link - https://developers.themoviedb.org/3/getting-started/introduction
+API Documentaion for Images link - https://developers.themoviedb.org/3/getting-started/images
 
 Sample design link - https://www.figma.com/file/ayF50urZXX5pyBhuvoczME/Untitled?node-id=0%3A1
 
-Backend:
-    1. A company has multiple departments
-    2. A department has multiple employees
-    3. Every employee has multiple leaves
-    4. Design DB schema and API endpoints for following:
-        1. Get the list of departments
-        2. Get the list of employees
-        3. Get leaves taken by each employee
+BE:
+A company has multiple departments
+A department has multiple employees
+Every employee has multiple leaves
+
+Design DB Schema and API endpoints for following:
+
+1. Get the list of departments
+2. Get the list of employees
+3. Get leaves taken by each employee
+
+
+DEPARTMENT_TABLE
+DEPARTMENT_ID(PK),DEPARTMENT_NAME
+
+EMPLOYEE_TABLE
+EMPLOYEE_ID(PK),EMPLOYEE_NAME,DEPARTMENT_ID(FK)
+
+LEAVE_TABLE
+LEAVE_ID(PK),DURATION (NUMBER),DATES ,EMPLOYEE_ID(FK)
+
+->company
+company/departments
+company/deparment/employees/{department_id}
+company/leaves/employees/{employee_id}
+
+A farmer needs to take a fox, a chicken, and a sack of grain across a river. The only way across the river is by a small boat, which can only hold the farmer and one of the three items. Left unsupervised, the chicken will eat the grain, and the fox will eat the chicken. However, the fox won’t try to eat the grain, and neither the fox nor the chicken will wander off. How does the farmer get everything across the river?

@@ -8,6 +8,8 @@ export default function App() {
   const [searchText, setSearchText] = useState<string>('');
   const [upcomingMovies, setUpcomingMovies] = useState<any[]>([]);
   const [errors, setErrors] = useState<string>('')
+  const STATIC_IMG_URL = "https://image.tmdb.org/t/p/original";
+  const [posterImg, setPosterImg] = useState<string>('');
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -22,10 +24,15 @@ export default function App() {
     }
   }
 
+  const handleRowClick = (index: number) => {
+    setPosterImg(STATIC_IMG_URL + upcomingMovies[index].poster_path)
+  }
+
 
 
   useEffect(() => {
     api.get("/movie/upcoming?api_key=1a615a2e5ae08a82df318ab0a97e8b51&language=en-US&page=1").then((response) => {
+      console.log('response', response.data);
       if (response.data && response.data.results) {
         setUpcomingMovies(response.data.results)
       }
@@ -48,7 +55,7 @@ export default function App() {
         </Button>
       </Form>
       {
-        errors ? <span>{errors}</span> : <Table striped bordered hover>
+        errors ? <span>{errors}</span> : <div className={"rowConatiner"}><Table striped bordered hover>
           <thead>
             <tr>
               <th>#</th>
@@ -56,14 +63,14 @@ export default function App() {
               <th>Popularity</th>
             </tr>
           </thead>
-          <tbody>
-            {upcomingMovies?.slice(0, 10).map((movie, index) => (<tr key={index}>
+          <tbody >
+            {upcomingMovies?.slice(0, 10).map((movie, index) => (<tr key={index} onClick={() => { handleRowClick(index) }}>
               <td>{index + 1}</td>
               <td>{movie.title}</td>
               <td>{movie.popularity}</td>
             </tr>))}
           </tbody>
-        </Table>
+        </Table><div className={"poster"}>{posterImg ? <img src={posterImg} height={"440px"} width={"410px"} /> : 'Poster'}</div></div>
       }
 
     </main>
